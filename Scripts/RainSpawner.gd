@@ -1,18 +1,18 @@
 extends Node2D
 
-onready var _timer = Timer.new() # create new timer
-onready var rng = RandomNumberGenerator.new() # create new random number generator
+@onready var _timer = Timer.new() # create new timer
+@onready var rng = RandomNumberGenerator.new() # create new random number generator
 const scene = preload('res://Entities/RainDrop.tscn') 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_child(_timer)
-	_timer.connect("timeout", self, "_spawnIt") # connect timer signal
+	_timer.connect("timeout", Callable(self, "_spawnIt")) # connect timer signal
 	_spawnIt()
 
 # spawn raindrop instance
 func _spawnIt():
-	var rain = scene.instance()
+	var rain = scene.instantiate()
 	add_child(rain)
 	_spawnRand()
 	

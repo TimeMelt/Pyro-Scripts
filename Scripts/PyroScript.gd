@@ -1,14 +1,14 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
-export (int) var speed = 600 
+@export var speed = 600 
 
-var velocity = Vector2()
+#var velocity = Vector2()
 const Bullet = preload("res://Entities/bullet.tscn")
 
 var screen_size
 
 var fire_rate : float = 4 #Fire rate 
-onready var update_delta : float = 1 / fire_rate # update firerate based on delta
+@onready var update_delta : float = 1 / fire_rate # update firerate based on delta
 var current_time : float = 0
 
 # grab keyboard/controller input
@@ -42,7 +42,9 @@ func _ready():
 
 func _physics_process(delta):
 	get_input(delta)
-	velocity = move_and_slide(velocity)
+	set_velocity(velocity)
+	move_and_slide()
+	velocity = velocity
 
 # keep player within screen bounds
 func _process(_delta):
@@ -51,9 +53,9 @@ func _process(_delta):
 # shoor bullet 
 func shoot():
 	current_time = 0
-	var bullet = Bullet.instance()
+	var bullet = Bullet.instantiate()
 	bullet.global_position = global_position
-	bullet.set_as_toplevel(true)
+	bullet.set_as_top_level(true)
 	add_child(bullet)
 
 # handle Pyro collisions
@@ -62,4 +64,3 @@ func _on_Area2D_area_entered(area):
 		pass # Replace with function body.
 	if area.is_in_group('rain'):
 		pass
-

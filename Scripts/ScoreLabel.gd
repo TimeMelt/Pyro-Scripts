@@ -13,5 +13,5 @@ func updateScore():
 
 # connect signal to increase score
 func conn():
-	return Global.connect('scoreAdded', self, 'updateScore')
+	return Global.connect('scoreAdded', Callable(self, 'updateScore'))
 

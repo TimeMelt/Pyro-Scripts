@@ -5,7 +5,7 @@ func _ready():
 	pass # Replace with function body.
 
 func _on_HomeButton_pressed():
-	if Global.volumeOn == true:
+	if bool(Global.volumeOn) == true:
 		$PageChange.play()
 	position.y = position.y + 8
 

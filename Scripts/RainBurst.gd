@@ -1,10 +1,10 @@
-extends AnimatedSprite
+extends AnimatedSprite2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if Global.volumeOn == true:
+	if bool(Global.volumeOn) == true:
 		$AudioStreamPlayer.play()
-	play("Explosion") # Replace with function body.
+	play("Explosion") 
 
 func _on_AnimatedSprite_animation_finished():
 	queue_free()

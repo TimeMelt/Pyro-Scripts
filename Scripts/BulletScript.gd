@@ -1,13 +1,13 @@
 extends Area2D
 
-export var speed = -500
+@export var speed = -500
 
 func _physics_process(delta):
 	var velocity = Vector2 (0, speed).rotated (global_rotation)
 	global_position +=  velocity * delta
 
 func _ready():
-	if Global.volumeOn == true:
+	if bool(Global.volumeOn) == true:
 		$AudioStreamPlayer.play()
 
 # handle bullet collisons

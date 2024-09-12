@@ -7,7 +7,7 @@ func _ready():
 
 
 func checkVolumeState():
-	if Global.volumeOn == true:
+	if bool(Global.volumeOn) == true:
 		$Indicator2.visible = true
 		$Indicator.visible = false
 	else:
@@ -15,4 +15,4 @@ func checkVolumeState():
 		$Indicator.visible = true
 
 func conn():
-	return Global.connect('volumeStateChanged', self, 'checkVolumeState')
+	return Global.connect('volumeStateChanged', Callable(self, 'checkVolumeState'))

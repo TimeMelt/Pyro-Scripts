@@ -4,4 +4,3 @@ extends RichTextLabel
 func _ready():
 	var score = Global.highScore
 	text = "Best Score: %s" % score
-
